@@ -1,4 +1,7 @@
-### YouTube MP3 Downloader Bot
+## YouTube MP3 Downloader Bot
+
+![Tg bot](https://github.com/ls500pymaster/ls500pymaster/blob/main/assets/tg_bot.jpg?raw=true "Tg bot")
+
 
 This is a Telegram bot that can convert YouTube videos to MP3 audio files and send them to you as audio messages.
 
