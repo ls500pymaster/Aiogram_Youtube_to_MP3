@@ -211,5 +211,4 @@ ENV/
 
 # mkdocs documentation
 /site
-env
 telegramMusic/*.mp3
