@@ -10,7 +10,7 @@ from pytube import YouTube
 
 import config
 
-bot = Bot(token=BOT_TOKEN)
+bot = Bot(token=os.environ["BOT_TOKEN"])
 dp = Dispatcher(bot)
 
 
