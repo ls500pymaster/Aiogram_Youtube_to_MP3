@@ -10,6 +10,13 @@ from aiogram.utils import executor
 from dotenv import load_dotenv
 from moviepy.editor import AudioFileClip
 from pytube import YouTube
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
+
+keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
+keyboard.add(KeyboardButton("/start"))
+keyboard.add(KeyboardButton("/help"))
+
 
 load_dotenv()
 bot = Bot(token=os.getenv("BOT_TOKEN"))
@@ -24,9 +31,17 @@ async def cmd_answer(message: types.Message):
 
 @dp.message_handler(commands=["help"])
 async def cmd_answer(message: types.Message):
+	chat_id = message.chat.id
+	text = "Hello! Choose actions:"
+	await bot.send_message(chat_id=chat_id, text=text, reply_markup=keyboard)
+
+
+@dp.message_handler(commands=["menu"])
+async def cmd_answer(message: types.Message):
 	await message.answer(
 		"⁉🆘 <b> Do you need support?</b> \n✉️ <b>Contact me</b> <a href='https://t.me/Alexexalex'>@Alexexalex/a><b>.</b>",
 		disable_web_page_preview=True, parse_mode="HTML")
+
 
 
 class YoutubeLinkFilter(BoundFilter):
