@@ -29,19 +29,18 @@ async def cmd_answer(message: types.Message):
 		parse_mode='HTML')
 
 
-@dp.message_handler(commands=["help"])
+@dp.message_handler(commands=["menu"])
 async def cmd_answer(message: types.Message):
 	chat_id = message.chat.id
 	text = "Hello! Choose actions:"
 	await bot.send_message(chat_id=chat_id, text=text, reply_markup=keyboard)
 
 
-@dp.message_handler(commands=["menu"])
+@dp.message_handler(commands=["help"])
 async def cmd_answer(message: types.Message):
 	await message.answer(
 		"⁉🆘 <b> Do you need support?</b> \n✉️ <b>Contact me</b> <a href='https://t.me/Alexexalex'>@Alexexalex/a><b>.</b>",
 		disable_web_page_preview=True, parse_mode="HTML")
-
 
 
 class YoutubeLinkFilter(BoundFilter):
@@ -63,8 +62,8 @@ async def cmd_answer(message: types.Message):
 	title = yt.title
 	author = yt.author
 	channel = yt.channel_url
-	resolution = yt.streams.get_highest_resolution().resolution
-	file_size = yt.streams.get_highest_resolution().filesize
+	resolution = yt.streams.get_lowest_resolution().resolution
+	file_size = yt.streams.get_lowest_resolution().filesize
 	length = yt.length
 	date_published = yt.publish_date.strftime("%Y-%m-%d")
 	views = yt.views
@@ -112,7 +111,7 @@ async def button_download(call: types.CallbackQuery):
 	author = yt.author
 	resolution = yt.streams.get_highest_resolution().resolution
 	stream = yt.streams.filter(progressive=True, file_extension="mp4")
-	mp4_path = stream.get_highest_resolution().download(f'{call.message.chat.id}', f'{call.message.chat.id}_{yt.title}')
+	mp4_path = stream.get_audio_only().download(f'{call.message.chat.id}', f'{call.message.chat.id}_{yt.title}')
 	await send_mp3(bot, call.message.chat.id, mp4_path, yt)
 
 if __name__ == '__main__':
