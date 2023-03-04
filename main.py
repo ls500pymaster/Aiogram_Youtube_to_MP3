@@ -108,10 +108,13 @@ async def button_download(call: types.CallbackQuery):
 	url = call.message.html_text
 	yt = YouTube(url)
 	title = yt.title
+	clean_title = re.sub(r'[^\w\s]'," ", title)
 	author = yt.author
 	resolution = yt.streams.get_highest_resolution().resolution
 	stream = yt.streams.filter(progressive=True, file_extension="mp4")
-	mp4_path = stream.get_audio_only().download(f'{call.message.chat.id}', f'{call.message.chat.id}_{yt.title}')
+	mp4_path = stream.get_lowest_resolution().download(f'{call.message.chat.id}', f'{clean_title}')
+	print(mp4_path)
+	print(yt)
 	await send_mp3(bot, call.message.chat.id, mp4_path, yt)
 
 if __name__ == '__main__':
