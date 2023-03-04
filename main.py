@@ -79,8 +79,8 @@ async def send_mp3(bot, chat_id, mp4_path, yt):
 	# send as audio message
 	with open(mp3_path, 'rb') as audio:
 		await bot.send_audio(chat_id, audio, caption=f"📹 <b>{title}</b> \n"
-		                                                       f"👤 <b>{author}</b> \n\n"
-		                                                       f"🗂 <b>Size —</b> <code>{file_size_mb}Mb</code>"
+		                                                       f"👤 <b>{author}</b> \n"
+		                                                       f"🗂 <b>Size —</b> <code>{file_size_mb}Mb</code>\n"
 		                                                       f"ℹ️ <b>Downloaded with @i_want_mp3_bot</b>",
 		                                                        parse_mode='HTML')
 	if os.path.exists(mp4_path):
