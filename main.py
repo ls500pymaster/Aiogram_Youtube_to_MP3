@@ -62,8 +62,8 @@ async def cmd_answer(message: types.Message):
 	title = yt.title
 	author = yt.author
 	channel = yt.channel_url
-	resolution = yt.streams.get_lowest_resolution().resolution
-	file_size = yt.streams.get_lowest_resolution().filesize
+	resolution = yt.streams.get_highest_resolution().resolution
+	file_size = yt.streams.get_highest_resolution().filesize
 	length = yt.length
 	date_published = yt.publish_date.strftime("%Y-%m-%d")
 	views = yt.views
