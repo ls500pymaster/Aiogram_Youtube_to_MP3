@@ -108,7 +108,7 @@ async def button_download(call: types.CallbackQuery):
 	url = call.message.html_text
 	yt = YouTube(url)
 	title = yt.title
-	clean_title = re.sub(r'[^\w\s]'," ", title)
+	clean_title = re.sub(r'[^\w\s\[\]]', " ", title)
 	author = yt.author
 	resolution = yt.streams.get_highest_resolution().resolution
 	stream = yt.streams.filter(progressive=True, file_extension="mp4")
